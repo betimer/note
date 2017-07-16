@@ -1,0 +1,40 @@
+
+mustache, rendering template
+
+
+where to find the complied rteact code (createElement)
+go to setting under chrome debug mode, untick 'Enable JavaScript source maps'
+
+
+Object.assgin (target, a, b, c); // return target (it gets updated)
+
+
+composition is better than inherentance
+
+
+react flow
+
+
+
+
+componentWillMount(){
+    // if has local storage: 
+    if (localStorage.myState){
+        setState(JSON.parse(localStorage.myState))
+        localStorage.myState = null; // clear localStorage
+    }
+}
+componentDidMount(){
+    windows.addEventListener('beforeunload,()=>{
+        localStorage.myState = JSON.stringify(this.state)
+    }');
+}
+
+
+
+
+
+
+
+
+

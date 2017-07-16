@@ -1,0 +1,8 @@
+babel cli:
+
+babel test.js 
+// will compile test.js file and print compiled source code in terminalk
+
+babel-node test.js
+// will compile test.js and call node to execute test.js
+
