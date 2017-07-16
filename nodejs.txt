@@ -1,0 +1,40 @@
+
+NodeJS is async; JS is sync; V8 is sync
+
+
+Var builtInLib = require('http');
+Var thirdpartyLib = require('socket.io');
+Var myCustomLib = require('./xin/ownCode');
+
+
+in each js file (my code or even from npm package), the variable require/module/exports is not global, they are actually local variables which were put by module.wrap function;
+In any js file, require/module/exports are identical only for that particular js file module.
+console.log("this.require:",this.require); // undefined
+console.log("global.require:",global.require); // undefined
+console.log("require:",require); // function body, inside which will call module.require;
+
+any js file is a module, and if it is loaded, they will be put into require('module')._cache === require.cache; if that file path is already cached, the js file will not compile and run again, instead, will get result from its own module.exports directly
+
+It is possible to have multiple versions for the samee package name e.g. 'send'. package A require 'send' version 1, while package B requires 'send' version 2. 2 different 'send' may be put into A/B's own node_modules folder. as any module.id is its real physical file path.
+
+who is calling the code to do the first loading (before touched the end code)
+each file is called by this function: require('module').Module.wrapper
+function (exports, require, module, __filename, __dirname) {}
+// you can see it by calling console.log(arguments) to check parameters
+// at start, exports = module.exports; that's why can module.exports = a, instead of exports = a;
+
+
+-- setImmediate and process.nextTick
+setImmediate is better than setTimeout(0); // put an event into the end of the event queue
+process.nextTick; // put the function at the first of the event queue // same or earlier than setImmediate
+
+
+
+// pass parameters
+// pm2 start argv.js --name=del1 --node-args="xxx --type=http --port=3004"
+// pm2 start argv.js --name=del2 -- yyy --type=http --port=3004
+// node argv.js zzz --type=http --port=3004
+// process.argv: ['yyy', '--type=http', '--port=3004']
+
+
+

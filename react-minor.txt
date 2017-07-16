@@ -1,0 +1,75 @@
+
+
+<pre>{JSON.stringify(this.state)}</pre>
+
+
+
+---- React.PropTypes.func etc. ----
+import React, { PropTypes } from 'react'
+class Modal extends React.Component {
+  static propTypes = {
+    title: React.PropTypes.string.isRequired,
+    children: PropTypes.node,
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func
+  }
+  render() {return null}
+}
+
+
+
+---- 2 ways to initial state or declare class functions ----
+class aaa {
+
+    constructor(){
+        this.state = {isOpen: true};
+        this.myFun = function(){}
+    }
+
+    // same with
+    state = {isOpen: true};
+    myFun = function(){}
+}
+
+
+
+
+if change props only not state, will it rerender
+that is wrong question, inside a component, props should not be changed, and outside component, props change will definitely cause re-render
+
+
+
+
+componentWillMount
+ - setState before inital render
+ - start timers, instance vars
+componetWillReceiveProps
+ - setState in response to props change
+componentDidMount
+componentDidUpdate
+- Do DOM stuff, web audio, sizing element, adding event listeners, etc. 
+ - start timers, instance vars (shoudl be fine)
+componentWillUnAmount
+ - clean  up timers, event listeners that you added manually, etc.
+
+
+
+
+
+
+if does not render this.state.firstname, do not put 'firstname' into state and setState for it. it makes no sense to change the state if you render without it. it does not belong to this.state
+
+
+
+
+
+we need to submit with the values in the form, instead of this.state.
+because the ui may differ from this.state if the value has condition. 
+e.g. form value: sameWithfirst? firstPerso: secondPerson
+  state = {
+    billingName: "Mil",
+    billingState: "VIC",
+    shippingName: "",
+    shippingState: "",
+    sameAsBill: false
+  }
