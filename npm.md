@@ -14,10 +14,10 @@ npm install babel --save-optional
 
 
 # 3. ~ and ^
-* `~1.2.3`  ---- 1.2.x (match minor version: accept [1.2.3, 1.2.n])
-* `^1.2.3`  ---- 1.x.x (match major version: accept [1.2.3, 1.n])
-* `>=1.2.3` ---- x.x.x (any thing bigger no less than 1.2.3, accept 3.4.5)
-* `*` ---- any version
+* ~1.2.3  ---- 1.2.x (match minor version: accept [1.2.3, 1.2.n])
+* ^1.2.3  ---- 1.x.x (match major version: accept [1.2.3, 1.n])
+* \>=1.2.3 ---- x.x.x (any thing bigger no less than 1.2.3, accept 3.4.5)
+* \* ---- any version
 (https://scotch.io/tutorials/node-and-npm-version-numbering-guide-and-best-practices)
 
 
@@ -44,15 +44,16 @@ ncu -a --removeRange (exact version)
 
 
 # 6. apply development branch to the current build (direct from github, with branch name)
+```
 "devDependencies": {
   "babel-eslint": "^7.0.0",
   "rtc-tools": "git+https://github.com/rtc-io/rtc-tools.git#garbage-collection-improvements"
 }
+```
 
 
-
-#  npm scripts
-1. Where to put? In package.json
+# npm scripts
+### Where to put? In package.json
 ```
 "scripts": {
   "build": "npm-cache install && gulp --prod ",
@@ -61,16 +62,16 @@ ncu -a --removeRange (exact version)
 }
 ```
 
-2. How to run them?
-npm run-script my-build
-npm run my-build (shorter)
-npm start/build/test (built-in command)
+### How to run them?
+- npm run-script my-build
+- npm run my-build (shorter)
+- npm start/build/test (built-in command)
 
-3. Multiple scripts skip some error: check "ignore-error"
+### Multiple scripts skip some error: check "ignore-error"
 
 
 
-# 8. It is possible to have same name npm package with different versions in a project, e.g.:
+# It is possible to have same name npm package with different versions in a project, e.g.:
 C:\Repo\rtcio-signaller>dir /ad /b /s "minimatch"
 C:\Repo\rtcio-signaller\node_modules\minimatch
 C:\Repo\rtcio-signaller\node_modules\fileset\node_modules\minimatch
@@ -81,17 +82,12 @@ C:\Repo\rtcio-signaller\node_modules\jasmine-node\node_modules\minimatch
 
 
 
-# 9. check all versions of a certain package:
-npm show socket.io-redis versions
-
-
-
-# 10. list golbal installed packages
+# list golbal installed packages
 npm list -g --depth=0
 
 
 
-# 11. list all versions
+# list all versions of a package
 npm show socket.io-redis versions
 npm show react-native versions --json
 npm i keystone@next (pre-release version)
