@@ -9,15 +9,15 @@ https://github.com/aspnet/EntityFramework/wiki/Roadmap
 
 Microsoft.EntityFrameworkCore.InMemory (testing)
 ```
- var options = new DbContextOptionsBuilder<BloggingContext>()
-    .UseInMemoryDatabase(databaseName: "Add_writes_to_database")
+var options = new DbContextOptionsBuilder<BloggingContext>()
+    .UseInMemoryDatabase(databaseName: "Find_searches_url")
     .Options;
 
-// Run the test against one instance of the context
+// Insert seed data into the database using one instance of the context
 using (var context = new BloggingContext(options))
 {
-    var service = new BlogService(context);
-    service.Add("http://sample.com");
+    context.Blogs.Add(new Blog { Url = "http://sample.com/cats" });
+    context.SaveChanges();
 }
 ```
 # Clean Architecture
@@ -27,5 +27,24 @@ using (var context = new BloggingContext(options))
 swagger in .net core
 
 
+# logging and exception
+seq
 
 
+# <i class="icon-file"></i> Deployment
+##### Framework-Dependent Deployment (FDD)
+Creating a framework dependent deployment with the .NET Core CLI
+##### Self -Contained Deployment (SCD) 
+Deploy your app, third-party dependencies, and .NET Core
+
+
+Item     | Value
+-------- | ---
+Computer | $1600
+Phone    | $12
+Pipe     | $1
+```sequence
+Alice->Bob: Hello Bob, how are you?
+Note right of Bob: Bob thinks
+Bob-->Alice: I am good thanks!
+```
