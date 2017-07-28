@@ -14,10 +14,10 @@ npm install babel --save-optional
 
 
 # 3. ~ and ^
-* ~1.2.3  ---- 1.2.x (match minor version: accept [1.2.3, 1.2.n])
-* ^1.2.3  ---- 1.x.x (match major version: accept [1.2.3, 1.n])
-* >>=1.2.3 ---- x.x.x (any thing bigger no less than 1.2.3, accept 3.4.5)
-* *---- any version
+* `~1.2.3`  ---- 1.2.x (match minor version: accept [1.2.3, 1.2.n])
+* `^1.2.3`  ---- 1.x.x (match major version: accept [1.2.3, 1.n])
+* `>=1.2.3` ---- x.x.x (any thing bigger no less than 1.2.3, accept 3.4.5)
+* `*` ---- any version
 (https://scotch.io/tutorials/node-and-npm-version-numbering-guide-and-best-practices)
 
 
