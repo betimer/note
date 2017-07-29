@@ -1,3 +1,7 @@
+# .net core
+
+check all dependencies support in .net core: https://icanhasdot.net/
+
 # dotnet cli
 
 dotnet new --install Microsoft.AspNet.Core.SpaServices::*
