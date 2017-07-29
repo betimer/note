@@ -43,8 +43,3 @@ Item     | Value
 Computer | $1600
 Phone    | $12
 Pipe     | $1
-```sequence
-Alice->Bob: Hello Bob, how are you?
-Note right of Bob: Bob thinks
-Bob-->Alice: I am good thanks!
-```
