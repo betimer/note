@@ -17,6 +17,7 @@ check all dependencies support in .net core: https://icanhasdot.net/
 Roadmap[https://github.com/aspnet/EntityFramework/wiki/Roadmap]
 
 Microsoft.EntityFrameworkCore.InMemory (testing)
+
 ```c#
 var options = new DbContextOptionsBuilder<BloggingContext>()
     .UseInMemoryDatabase(databaseName: "Find_searches_url")
@@ -30,26 +31,31 @@ using (var context = new BloggingContext(options))
 }
 ```
 
-## Clean Architecture
-
 ## Swashbuckle
+
 swagger in .net core
 
 ## logging and exception
+
 seq
 
-## <i class="icon-file"></i> Deployment
+## Deployment
 
-##### Framework-Dependent Deployment (FDD)
+### Framework-Dependent Deployment (FDD)
+
 Creating a framework dependent deployment with the .NET Core CLI
 
 dotnet publish --framework netcoreapp1.1 --confgiration Release
 
-##### Self -Contained Deployment (SCD) 
+### Self -Contained Deployment (SCD) 
+
 Deploy your app, third-party dependencies, and .NET Core
 
 dotnet publish --runtime osx.10-64 --confgiration Release
 
+## TODO
+
+- Clean Architecture
 
 Item     | Value
 -------- | ---
