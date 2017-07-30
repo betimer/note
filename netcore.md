@@ -1,13 +1,18 @@
 # .net core
 
-check all dependencies support in .net core: https://icanhasdot.net/
-
-# dotnet cli
+## dotnet cli
 
 dotnet new --install Microsoft.AspNet.Core.SpaServices::*
-dotnet new webapi
+dotnet new webapi --name  firstapi
+dotnet restore
+dotnet run
+or: dotnet bin\firstapi.dll
 
-# Entity Framework Core
+## check whether existing proj is eligible for migration
+
+check all dependencies support in .net core: https://icanhasdot.net/
+
+## Entity Framework Core
 
 Roadmap[https://github.com/aspnet/EntityFramework/wiki/Roadmap]
 
@@ -25,15 +30,15 @@ using (var context = new BloggingContext(options))
 }
 ```
 
-# Clean Architecture
+## Clean Architecture
 
-# Swashbuckle
+## Swashbuckle
 swagger in .net core
 
-# logging and exception
+## logging and exception
 seq
 
-# <i class="icon-file"></i> Deployment
+## <i class="icon-file"></i> Deployment
 
 ##### Framework-Dependent Deployment (FDD)
 Creating a framework dependent deployment with the .NET Core CLI
@@ -50,4 +55,4 @@ Item     | Value
 -------- | ---
 Computer | $1600
 Phone    | $12
-Pipe     | $1
+Pipe     | $1 
