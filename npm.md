@@ -33,15 +33,12 @@ npm update xxx@latest --save
 npm install xxx --save
 ??? npm upgrade --global yarn
 
-
-
 # 5. npm-check-updates
+
 npm install -g npm-check-updates@latest
 ncu -u --semverLevel major (latest exact version within major)
 ncu -a --removeRange (exact version)
 (if you want future all to be exact: npm config set save-exact true)
-
-
 
 # 6. apply development branch to the current build (direct from github, with branch name)
 ```
@@ -51,6 +48,9 @@ ncu -a --removeRange (exact version)
 }
 ```
 
+# 7. npm cache
+npm cache verify
+npm cache clear --force
 
 # npm scripts
 ### Where to put? In package.json
