@@ -1,5 +1,7 @@
+# react
 
----- component lifecycle (different with mount/update) ----
+## ---- component lifecycle (different with mount/update) ----
+
 Mounting: created and inserted into the DOM
         constructor()
         componentWillMount()
@@ -19,9 +21,8 @@ Unmounting: removed from the DOM
 https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle
 https://www.tutorialspoint.com/reactjs/reactjs_component_life_cycle.htm
 
+## ---- react process ----
 
-
----- react process ----
 1. jsx: <MyButton color="blue" shadowSize={2}>Click Me</MyButton>
 2. build to js: React.createElement(MyButton, {color: 'blue', shadowSize: 2}, 'Click Me')
 3. virtual DOM
@@ -32,23 +33,22 @@ when talking about DOM update, there are 2 steps:
 1. render -> return jsx, it's similar to a get method, no any side effect, just call it to return jsx stuff at anytime; I have tried in other places to call render(), it just return Symbol(React.element) jsx stuff.
 2. paint to browser
 
+## ---- receive props from either literature way or redux way ----
 
-
----- receive props from either literature way or redux way ----
 a. <MyComponent prop1={"xin"} />
-b. mapStateToProps(state){return prop2:state.xxReducer.surname}
-MyComponent will get both prop1 and prop2, cannot fell the difference
+b. mapStateToProps(state){ return prop2: state.xxReducer.surname }
+MyComponent will get both prop1 and prop2, cannot feel the difference
 
 
+## ---- setState is async function ----
 
----- setState is async function ----
 // maybe next tick? react will put it in the future queue, react takes care of it.
-this.setState({newAdded: "test"}); // next time
+this.setState({newAdded: "test"}); // next async js event queue
 let youCannotGetIt = this.state.newAdded; // undefined
 
 
+## ---- react event (SytheticEvent) ----
 
----- react event (SytheticEvent) ----
 React uses event delegation and listens for events at the root of the application. 
 React keeps track of which rendered nodes have listeners. 
 The synthetic event system implements its own bubbling and calls the appropriate handlers.
@@ -56,18 +56,13 @@ That's way when I check DOM element, there is no onclick in html file
 I can also see it from broswer callstack when debugger react onClick body.
 
 
+## ------------ If contextTypes is defined within a component, the following lifecycle methods will receive an additional parameter, the context object:
 
-
-
-
------------- If contextTypes is defined within a component, the following lifecycle methods will receive an additional parameter, the context object:
 constructor(props, context)
 componentWillReceiveProps(nextProps, nextContext)
 shouldComponentUpdate(nextProps, nextState, nextContext)
 componentWillUpdate(nextProps, nextState, nextContext)
 componentDidUpdate(prevProps, prevState, prevContext)
-
-
 
 
 
@@ -79,6 +74,4 @@ can I do something like redux props auto connected tag?????? <App redux-auto=tru
 
 
 https://github.com/chenglou/react-motion
-
-
 
