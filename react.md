@@ -2,13 +2,16 @@
 
 ## ---- component lifecycle (different with mount/update) ----
 
-Mounting: created and inserted into the DOM
+### Mounting: created and inserted into the DOM
+
         constructor()
         componentWillMount()
         render()
         componentDidMount()
-Updating: re-rendered caused by changes to props or state.
-        componentWillReceiveProps(nextProps) 
+
+### Updating: re-rendered caused by changes to props or state.
+
+        componentWillReceiveProps(nextProps)
         // this.setState() good to put in cwrp
         // cwrp only uses when state dedrives from props
         // have to change state here when component props changed, because state only inited from constructor, not updated from update case. so must re-sync state from props here
@@ -16,7 +19,9 @@ Updating: re-rendered caused by changes to props or state.
         componentWillUpdate(nextProps, nextState)
         render()
         componentDidUpdate(prevProps, prevState)
-Unmounting: removed from the DOM
+
+### Unmounting: removed from the DOM
+
         componentWillUnmount()
 https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle
 https://www.tutorialspoint.com/reactjs/reactjs_component_life_cycle.htm
@@ -29,7 +34,7 @@ https://www.tutorialspoint.com/reactjs/reactjs_component_life_cycle.htm
 4. document.createElement (render)
 5. real DOM
 ------------------
-when talking about DOM update, there are 2 steps: 
+when talking about DOM update, there are 2 steps:
 1. render -> return jsx, it's similar to a get method, no any side effect, just call it to return jsx stuff at anytime; I have tried in other places to call render(), it just return Symbol(React.element) jsx stuff.
 2. paint to browser
 
