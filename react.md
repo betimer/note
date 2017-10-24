@@ -70,7 +70,7 @@ I can also see it from broswer callstack when debugger react onClick body.
 
 React SytheticEvent will change the 'this' context, that's why we see a lot of this.func1 = this.func1.bind(this);
 Here is one of the all possible react function invoking: 
-https://codesandbox.io/s/k5q98q25j5
+https://stackblitz.com/edit/react-handling-event (https://codesandbox.io/s/k5q98q25j5)
 https://reactjs.org/docs/handling-events.html
 
 ## ------------ If contextTypes is defined within a component, the following lifecycle methods will receive an additional parameter, the context object
