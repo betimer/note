@@ -8,3 +8,8 @@ AWS SAM Local (debug lambada locally)
 
 https://claudiajs.com/
 
+
+
+bat:
+start .
+start xxxx.sln
