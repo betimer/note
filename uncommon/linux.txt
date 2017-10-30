@@ -1,0 +1,14 @@
+
+
+
+-- apt-get --
+
+sudo apt-get install default-jre    (install/upgrade default-jre)
+
+sudo apt-get update
+
+sudo apt-get upgrade
+
+apt-cache search jre    (search package that contains "jre") 
+
+
