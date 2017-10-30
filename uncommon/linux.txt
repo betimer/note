@@ -9,6 +9,9 @@ sudo apt-get update
 
 sudo apt-get upgrade
 
+-- apt-cache --
 apt-cache search jre    (search package that contains "jre") 
 
+-- apt -- 
+apt list --installed    (list all apt installed packages)
 
