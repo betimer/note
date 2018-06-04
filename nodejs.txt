@@ -2,9 +2,9 @@
 NodeJS is async; JS is sync; V8 is sync
 
 
-Var builtInLib = require('http');
-Var thirdpartyLib = require('socket.io');
-Var myCustomLib = require('./xin/ownCode');
+var builtInLib = require('http');
+var thirdpartyLib = require('socket.io');
+var myCustomLib = require('./xin/ownCode');
 
 
 in each js file (my code or even from npm package), the variable require/module/exports is not global, they are actually local variables which were put by module.wrap function;
