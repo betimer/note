@@ -1,6 +1,6 @@
 
 // 1. const keyword is using: reference
-// but u still can update its properties
+// and its properties are still updatable
 
 
 

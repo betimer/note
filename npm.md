@@ -86,6 +86,12 @@ npm cache clear --force
 
 ### Multiple scripts skip some error: check "ignore-error"
 
+## 8. npm ci, npm prune
+
+`npm ci` will install the packages exactly based on package-lock.json (whereas `npm install` ignores the lock file). It's intentively made to use in the CI environment, since it freeze the packages from developer's machine. Consistent.
+
+`npm prune` will clean the packages that you do not need in the node_modules folder
+
 ## It is possible to have same name npm package with different versions in a project
 
 C:\Repo\rtcio-signaller>dir /ad /b /s "minimatch"
