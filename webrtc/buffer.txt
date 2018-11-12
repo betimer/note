@@ -1,0 +1,11 @@
+
+<caller-video caller="caller" ng-if="!isMain"></caller-video>
+<caller-video caller="caller" ng-if="isMain" zindex="1"></caller-video>
+
+<caller-video caller="caller" ng-if="isMain" zindex="{{isMain ? 1 : undefined}}"></caller-video>
+
+
+
+
+setParameters:
+chrome yes, safari no (as of safari 12)
