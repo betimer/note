@@ -15,7 +15,7 @@ There are lots of advantages of WebRTC:
 - device independence, more and more browsers are supporting it, this article will show between chrome and safari
 - support multiple stream/tracks, you can change or even add camera, or add screenshare
 
-## What are the key componensts
+## What are the key components
 
 - **Signalling**: peer exchange information. Even though it's P2P, but need a machanism to send/receive data for setting up connection, also you may add authentication check in this step. That's where you should build server for.
 - **ICE**: A framework that tries to setup connection. If direct network card fails, then external address obtained from STUN, if still fail then use TURN.

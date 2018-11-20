@@ -1,19 +1,19 @@
 
-# Journey to build the WebRTC cross browser video call (Specially Chrome + Safari)
+# Journey to build the WebRTC cross-browser video call (Specially Chrome + Safari)
 
 ## Prepare framework and tools
 
-signalling framework: rtcio, quickconnect
+signalling framework: rtcio, rtc-quickconnect
 
 messaging method: socket.io
 
-WebRTC helper: adapter.js (adapter is very useful to deal with multiple browser in terms of WebRTC, and it is still being actively maintained)
+WebRTC helper: adapter.js (adapter is very useful to deal with multiple browsers in terms of WebRTC, and it is still being actively maintained)
 
 ## Capture user media stream
 
 I know there are a lot of libraries dealing with `getUserMedia()` in different browsers, such as [getScreenMedia](https://www.npmjs.com/package/getscreenmedia).
 
-Fortunately, with new standard of WebRTC you just need the same method: `navigator.mediaDevices.getUserMedia()`
+Fortunately, with the new standard of WebRTC you just need the same method: `navigator.mediaDevices.getUserMedia()`
 
 ```js
 navigator.mediaDevices
@@ -31,7 +31,7 @@ Note that when you call this function, that's the moment that your browser will 
 
 ## Constraint of getUserMedia
 
-This can consume your time bigly (which kills my time massively). There are so many contraint types you can set when you call `getUserMedia()`, but problems can come together with this.
+This can consume your time bigly (which kills my time massively). There are so many constraint types you can set when you call `getUserMedia()`, but problems can come together with this.
 
 First of all, to check which types of constraint your browser supports: `navigator.mediaDevices.getSupportedConstraints()` You will get an object with each type flag as true or false.
 
@@ -42,10 +42,13 @@ Some examples for the constraint: (some will be used in the later section)
 ```js
 // simple get default audio and video
 {video:true, audio: false}
+
 // get video with 640x360, and system default audio
 {"video":{"height":{"ideal":360},"width":{"ideal":640}},"audio":true}
+
 // get video only, and from the specific device (usually when user chose a camera)
 {"video":{"width":{"ideal":640},"deviceId":{"exact":"2196afda0f21b57365aede21c989c8cc2ad2e2cc69f663cd1e432b7ebb64da4c"}},"audio":false}
+
 // get video only, and using the back camera (usually on a mobile device)
 {"video":{"width":{"ideal":640},"facingMode":{"exact":"environment"}},"audio":false}
 ```
@@ -91,7 +94,7 @@ peerConnections.forEach(function(pc) {
 
 ## Change device: 1. list available devices
 
-First of all you need to know all your avaiable device list:
+First of all, you need to know all your available device list:
 
 ```js
 navigator.mediaDevices.enumerateDevices()
@@ -110,7 +113,7 @@ Then, later on, after detecting the event when user changed the camera/mic, it's
 
 It's very tricky and also very dangerous if you do not operate this properly. Imagine you have 2 cameras (one built in one external), and you switch between them many times. Well, here is what happens: you may get blue screen. I already got it quite a few times, and the key cause could be lack of stopping previous device.
 
-* **1. stop the exsting video track**
+* **1. stop the existing video track**
 
 Well I want to say more of this step, It is !Important. At times I got blue screen because of missing this step, and this is the moment that your camera's light will be turned off.
 
@@ -158,9 +161,9 @@ peerConnections.forEach(function(pc) {
 
 * **4. Minor notice about the event difference**
 
-1. if chrome calls replaceTrack, no track event will be fired on remote sides (chrome or safari)
-2. if safari 11.1.1 calls replaceTrack, track event will be fired on remote peers (video track gets fired, with existing same stream object)
-3. if safari 12 calls replaceTrack, no track event will be fired on remote sides
+1. if chrome calls `replaceTrack`, no track event will be fired on remote sides (chrome or safari)
+2. if safari 11.1.1 calls `replaceTrack`, track event will be fired on remote peers (video track gets fired, with existing same stream object)
+3. if safari 12 calls `replaceTrack`, no track event will be fired on remote sides
 
 ## Change speaker
 
@@ -176,7 +179,7 @@ allVideoElements.forEach(function(el) {
 });
 ```
 
-## An extra field of video element in Safari in order to cross browser
+## An extra field of video element in Safari in order to cross-browser
 
 In safari, make sure these elements have been set
 
@@ -258,25 +261,25 @@ remoteAudioTracks.forEach()
 
 ## Then when mute mic, sometimes safari can make u into a media speaker mode (instead of call speaker mode)
 
-This does not sound too much harmful, as long as you can change the volumn after the speaker mode gets changed.
+This does not sound too much harmful, as long as you can change the volume after the speaker mode gets changed.
 
-The biggest issue is, however, once you are in media speaker mode (you can fully zoom volumn to 0), when you unmute, safari may not respound as quickly as you expect. And this, causes remote parties are not able to hear you.
+The biggest issue is, however, once you are in media speaker mode (you can fully zoom volumn to 0), when you unmute, safari may not respond as quickly as you expect. And this, causes remote parties are not able to hear you.
 
 Fix is: find the video element and do: `videoEle.load()`
 
-I do believe it's Safari delay problem, because I have seen after around 2~5 mins, it can go back to the correct speaking mode. But, how can you make caller wait that long as silence?
+I do believe it's Safari delay problem because I have seen after around 2~5 mins, it can go back to the correct speaking mode. But, how can you make caller wait that long as silence?
 
-## If andriod chrome <70, it may not work well with safari on ios
+## If android chrome <70, it may not work well with safari on ios
 
 `OperationError: Failed to set remote offer sdp: Session error code: ERROR_CONTENT. Session error description: Failed to set remote video description send parameters.. (anonymous function)`
 
 ## Safari may not fully respect the media capture constraint when calling getUserMedia
 
-Some getUserMedia constraints may not be respected by Safari, it might complain then fail or just ignored. E.g. if specifying the frameRate to be 1 (1 frame per second), Safari just capture its native camera frameRate.
+Some getUserMedia constraints may not be respected by Safari, it might complain then fail or just ignored. E.g. if specifying the frameRate to be 1 (1 frame per second), Safari just captures its native camera frameRate.
 
-## Fullscreen mode (Andriod + iPad)
+## Fullscreen mode (Android + iPad)
 
-To make the apple behave a bit better, browsers provide fullscreen mode. This makes it more like running a native app. However, in safari IOS part, I can only find it supports on ipad instead of iphone.
+To make the apple behave a bit better, browsers provide fullscreen mode. This makes it more like running a native app. However, in safari IOS part, I can only find it supports on iPad instead of iPhone.
 
 ```js
 var docElm = document.documentElement;
@@ -298,30 +301,30 @@ else {
 
 I've covered the change camera case, which chooses the camera from the list, setting the `deviceId` then recapture the mediaStream.
 
-Switch camera is a bit different. Instead of relaying on `deviceId`, it relays on `facingMode` (whose value can be user or environment). As you can probably guess, it only support mobile or some tab, since it requires having both front and back camera.
+Switch camera is a bit different. Instead of relying on `deviceId`, it relies on `facingMode` (whose value can be user or environment). As you can probably guess, it only support mobile or some tab, since it requires having both front and back camera.
 
 ## Safari hidden video speaker issue (too many parties, the speaking video overlapped)
 
-This can happen and it is in a dangerous zone, and specailly you are not a responsive design.(Though it might not be the most case). But it is critical, that is if putting all remote audio tracks into a video element, and somehow you get to many participants, and the "speaking" is aligned in a place that out of the safari visible area, you might not be able to hear the sound.
+This can happen and it is in a dangerous zone, and especially you are not a responsive design.(Though it might not be the most case). But it is critical, that is if putting all remote audio tracks into a video element, and somehow you get to many participants, and the "speaking" is aligned in a place that out of the safari visible area, you might not be able to hear the sound.
 
-Solution is simple, just make the speaking video visible in the page. But I learnt the hard way from this.
+The solution is simple, just make the speaking video visible in the page. But I learnt the hard way from this.
 
-## When devices plug in or plug out, update selection items
+## When devices plugged in or plugged out, update selection items
 
-In order to get better, we need to make it aware of newly plugined in devices, e.g. HD camera. In order to accomplish that, we need to make use of an event: `navigator.mediaDevices.ondevicechange`. It is available on both Chrome and Firefox. However, this is *unavaible* in Safari (As of 12).
+In order to get better, we need to make it aware of newly devices plugged in, e.g. HD camera. In order to accomplish that, we need to make use of an event: `navigator.mediaDevices.ondevicechange`. It is available on both Chrome and Firefox. However, this is *unavailable* in Safari (As of 12).
 
 ## 150 wakeups per second limit in Safari
 
 `45001 wakeups over the last 167 seconds (269 wakeups per second average), exceeding limit of 150 wakeups per second over 300 seconds`
 
-That is the error that may happen on Safari, and it usually happen when there are multiple way call,practically, 4 or 5 way call. One way which I found is helpful is to reduce the frameRate of the video. But I hold the opinion that it is a limitation of Safari.
+That is the error that may happen on Safari, and it usually happens when there is multiple way call, practically, 4-way or 5-way call. One way which I found is helpful is to reduce the frameRate of the video. But I hold the opinion that it is a limitation of Safari.
 
 ## before and after success of `getUserMedia` in safari, it tells you different list items of devices, and the device id has been changed
 
 If asking safari how many devices you have before success of `getUserMedia`, it may return 2 devices (one mic and one camera, even if you plug in more mics and cameras). However after success media capture, it might tell you more. Besides, this is more problematic (I also believe it is a bug of Safari): the deviceId has been changed.
 
-This cause trouble that:
+This causes trouble that:
 
 1. You may not be able to use external camera directly
 2. Once media captured, you need to refresh your device item list
-3. You cannot remember the choicen device (maybe through localStorage), and reuse the id once refreshed
+3. You cannot remember the chosen device (maybe through localStorage), and reuse the id once refreshed
