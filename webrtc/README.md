@@ -5,7 +5,7 @@ This article is mainly discussing about chrome (on laptop and Andriod) and safar
 
 ## Intro to WebRTC
 
-**WebRTC** is a free, open project that provides browsers and mobile applications with Real-Time Communications (RTC) capabilities via simple APIs. The WebRTC components have been optimized to best serve this purpose.
+**WebRTC** is a free, open project that provides browsers and mobile applications with Real-Time Communications (RTC) capabilities via simple APIs. It's a pure P2P technology with always encryption. It can send and receive video, audio, file, screenshare, etc.
 
 There are lots of advantages of WebRTC:
 
@@ -28,28 +28,3 @@ There are lots of advantages of WebRTC:
 ![Getting Started](stun.png)
 ![Getting Started](turn.png)
 ![Getting Started](peerc.png)
-
-## What libs and tools do I use
-
-rtcio: <https://github.com/rtc-io>
-
-webrtc-adapter: <https://github.com/webrtc/adapter>
-
-Testing camera resolution: <https://webrtchacks.github.io/WebRTC-Camera-Resolution>
-
-## WebRTC 1.0 is changing stream based to track based
-
-Basically, MediaStream is the container of MediaStreamTrack (video or audio), that's why you can obtain video/audio tracks from `stream.getVideoTracks()` or `stream.getAudioTracks()`
-
-Previously, WebRTC events are based on stream level (`addstream`, `removestream`, more info: [MediaStreamEvent](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamEvent)) But now they are being deprecated.
-
-Now new standard comes: WebRTC track based. Basically instead of getting event of 1 `addstream`, you get 2 `track` events.
-
-Then how should I display the `<video>` since it needs to set `srcObject` which is stream type?
-
-```js
-// it's easy when u bind the track event listener
-pc.ontrack = function(evt) {
-    console.log('track and stream', evt.track, evt.streams[0]);
-};
-```
