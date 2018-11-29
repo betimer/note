@@ -4,18 +4,19 @@ Note: there is some Chinese characters in this article.
 
 ## Erlang Basic
 
-Erlang is COP(Concurrency Oriented Programming) and FP(functional programming). Types are determined at run time, Erlang does not have a type system.
+Erlang is COP(Concurrency Oriented Programming) and FP(functional programming). Types are determined at run time. Erlang does not have a type system.
 
 wxErlang 是一个 Erlang 语言对 C++ 的 GUI 库 wxWidgets 的封装.
 
 编译: c(test)与c(test.erl)都行。c(Mudule)->compile+load.  l(Moduke)->load.
 
-Pattern=Expression (Pattern Matching 模式匹配) (Pattern单一格式, 比如A+B = CC这种是错误的)(Expression没有unbound的变量)
+Pattern=Expression (Pattern Matching) 
+
+(Pattern单一格式, 比如A+B = CC这种是错误的)(Expression没有unbound的变量)
 
 exported functions & local functions: -export([f1/3,f2/4]).
 
-Terms: (atom原子)(tuple元组)(list列表)(String 必须""，'XXX'是个atom类型)(module模块) 
-
+Terms: (atom原子)(tuple元组)(list列表)(String 必须""，'XXX'是个atom类型)(module模块)
 
 - List: "Abac" 与[65,98,97,99] 是完全一样的。
     - [H|T]这种模式之后，H是列表中的一个头元素，而T是列表。
@@ -45,13 +46,17 @@ Pid2 = spawn(Mod, Func, Args)
 ## Erlang Process
 
 我通过测试发现erlang语言里面的递归非常不一样。好像没有压栈这个说法。好像压栈就像其他语言的循环一样。设计了"refer 2"的测试用例。
+
 第一，server的loop进程，在进行无限的loop之后，发现内存根本没有怎么增加，或者说没增加。
+
 第二，用call1(N)的方法，发现内存会一直累加，因为是call1的关联的terminal进程有大量的server发的Message，而此时这个进程还活着。
+
 第三，如果用call2(N)，或者call_process(N)方法，调用很多很多次，内存也不会有什么啥变化，(如果进程死了，他的邮箱会被清除)
-The important thing to note about tail-recursive functions is that they can run in loops without consuming stack space. Such function are oden called “iterative functions.”
+
+The important thing to note about tail-recursive functions is that they can run in loops without consuming stack space. Such function are often called “iterative functions.”
 
 ```
-refer 1_______________________________________________________
+refer 1 -----------------------------
 good functions:
 // 类似于冒泡排序, 从List中找两个值不一样的元素出来
 getDifferent([])-> {nok,nok,nok};
@@ -72,7 +77,7 @@ getDifferent(L1,[L2|LCs])->
 ```
 
 ```
-refer 2_____________________________________________________________
+refer 2 -----------------------------
 -module(server1).
 -export([start/0,stop/0,loop/1,call1/1,call2/1,call_process/1]).
 
