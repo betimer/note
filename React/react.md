@@ -4,25 +4,27 @@
 
 ### Mounting: created and inserted into the DOM
 
-        constructor()
-        componentWillMount()
-        render()
-        componentDidMount()
+    constructor()
+    componentWillMount()
+    render()
+    componentDidMount()
 
 ### Updating: re-rendered caused by changes to props or state.
 
-        componentWillReceiveProps(nextProps)
-        // this.setState() good to put in cwrp
-        // cwrp only uses when state dedrives from props
-        // have to change state here when component props changed, because state only inited from constructor, not updated from update case. so must re-sync state from props here
-        shouldComponentUpdate(nextProps, nextState)
-        componentWillUpdate(nextProps, nextState)
-        render()
-        componentDidUpdate(prevProps, prevState)
+    componentWillReceiveProps(nextProps) // will be deprecated
+    // this.setState() good to put in cwrp
+    // cwrp only uses when state dedrives from props
+    // have to change state here when component props changed, because state only initialized from constructor, not updated from update case. so must re-sync state from props here
+    shouldComponentUpdate(nextProps, nextState)
+    componentWillUpdate(nextProps, nextState) // will be deprecated
+    render()
+    getSnapshotBeforeUpdate()
+    componentDidUpdate(prevProps, prevState)
 
 ### Unmounting: removed from the DOM
 
-        componentWillUnmount()
+    componentWillUnmount()
+
 https://facebook.github.io/react/docs/react-component.html#the-component-lifecycle
 https://www.tutorialspoint.com/reactjs/reactjs_component_life_cycle.htm
 
@@ -40,15 +42,16 @@ Building and first time rendering:
 
 when talking about Dom 2 types: virtualDom (tree of React elements) & browserDom
 
-1. render() just return jsx/virtualDom, just a get method without any side effect, just call it to return jsx stuff at anytime; I have tried in other places to call render(), it just return Symbol(React.element) jsx stuff.
+1. render() just return jsx/virtualDom, it's just a get method without any side effect, just call it to return jsx stuff at anytime; I have tried in other places to call render(), it just return Symbol(React.element) jsx stuff.
 
-2. after render(), React gets virtualDom. Then, React will compare if the new virtualDom is different current virtualDom (that's may also why using this.setState instead of change directly, because React needs to create a new virtualDom to compare the existing virtualDom)
+2. after render(), React gets virtualDom. Then, React will compare if the new virtualDom is different current virtualDom (that may be the reason why using this.setState instead of change directly, because React needs to create a new virtualDom to compare the existing virtualDom)
 
 3. After comparing (React Reconciliation), if React finds it is different, then React will paint to real browserDom
 
 ## ---- receive props from either literature way or redux way ----
 
 a. <MyComponent prop1={"xin"} />
+
 b. mapStateToProps(state){ return prop2: state.xxReducer.surname }
 MyComponent will get both this.props.prop1 and this.props.prop2, and cannot feel the difference
 
@@ -69,6 +72,7 @@ I can also see it from broswer callstack when debugger react onClick body.
 ## ---- React event with 'this' issue
 
 React SytheticEvent will change the 'this' context, that's why we see a lot of this.func1 = this.func1.bind(this);
+
 Here is one of the all possible react function invoking: 
 https://stackblitz.com/edit/react-handling-event (https://codesandbox.io/s/k5q98q25j5)
 https://reactjs.org/docs/handling-events.html
