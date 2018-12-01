@@ -26,7 +26,7 @@ debuger; // step 2,
 // ---- immutable object in reducer ----
 // Since Object.assign({}, state, {updated: 'a'}) only copy and merge top level, and if the propery is an object, it only copy by reference:
 // 1. if property is an object
-let prop1 = Object.assign({}, state.prop1);
+let prop1 = Object.assign({}, state.prop1, {currentName: 'subField'});
 let newState = Object.assign({}, state, { prop1 })
 // 2. if property is a list, use concat/slice/filter/map/reduce to get brand new object
 let list1 = state.list1.concat();
@@ -34,8 +34,6 @@ let list2 = state.list2.slice(0, state.list2.length); // begin, end
 let list3 = state.list3.filter(p => true);
 let list4 = state.list4.reduce(p => false);
 let list5 = state.list5.map(p => p);
-// 3. if property is a list, and you want both list and each element to be brand new
-let list9 = state.list9.map((item) => Object.assign({}, item));
+// 3. if property is a list and element is object, you want both list and each element to be brand new
+let list9 = state.list9.map(item => Object.assign({}, item));
 let newState = Object.assign({}, state, { list9 });
-
-
