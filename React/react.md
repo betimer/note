@@ -186,13 +186,23 @@ PureComponent will not re-render if its props not gets changed (if state changes
 
 2. 2 ways to overcome upper problem:
     - write `this.handleClick = this.handleClick.bind(this)` in the `constructor()`
-    - declaring a class **Class Instance Property**(ES2016) with a **fat arrow** (This syntax might need help of babel)
+    - declaring a class **Instance Property**(ES2016) with a **fat arrow** (This syntax needs help of babel) (This method, it seems babel will move the function into the constructor similar as `this.handleClick2`)
 
     ```js
     class CounterButton extends Component {
-        state = {count: 0}
+        constructor(){
+            this.handleClick1 = this.handleClick1.bind(this);
+            this.handleClick2 = () => this.setState({count: this.state.count + 1});
+        }
 
-        handleClick = () => this.setState({count: this.state.count + 1});
+        handleClick1(){
+            this.setState({count: this.state.count + 1});
+        }
+
+        state = {count: 0} // experimental feature
+
+        handleClick3 = () // experimental feature
+          => this.setState({count: this.state.count + 1});
 
         render() {
             return <button type='button' onClick={this.handleClick}>Increment: {count}</button>;
