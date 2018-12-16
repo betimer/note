@@ -16,4 +16,12 @@ document.head.appendChild(script);
 > 1.1-1
 0.10000000000000009
 
-## 
+## Arrow function cannot replace all traditional function definition way
+
+```js
+function Person() {
+  this.id = 'id_1';
+}
+Person.prototype.setName = function(name) {this.name = name};
+Person.prototype.setNameBad = name => this.name = name; // this will be global/window
+```

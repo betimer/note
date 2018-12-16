@@ -60,11 +60,6 @@ const c = 1;
 }
 
 
-Car.prototype.drive = function(fff) {
-  this.speed = fff;
-}.bind(this);
-
-
 const myThing = {
   aa: function() {
     fetch(url).then(() => this.bb());
@@ -73,16 +68,11 @@ const myThing = {
 }
 
 
-
-// 7. Set will check reference of object, whether same or not
-
-
-
 // 8. Map
 let store = new Map();
 // under the hook [["ff", value1], ["gg", value2]];
 
-for(let keyValue of store) { }
+for(let keyAndValue of store) { }
 for(let [key, value] of store) { }
 for(let key of store.keys()) { }
 
