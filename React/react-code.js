@@ -122,27 +122,26 @@ class Provider extends React.Component {
 
 
 // --------------------------------------------------------------------------------
-// -------- render props; render children 
+// -------- render props; render children (very similar approach)
+// ShareComponent maintains location of mouse, and a few components relay its value to render
 class ShareComponent extends React.Component {
   state = { xx: 1, yy: 2 }
   // control state by itself
   render() {
-    return this.props.render(this.state.xx, this.state.yy);
+    return this.props.renderProps(this.state.xx, this.state.yy);
+    // if render children, will be:
     // return this.props.children(this.state.xx, this.state.yy);
   }
 }
 
 function ExampleRenderProps() {
-  return <AnyComponent render={(x, y) => (
+  return <ShareComponent renderProps={(x, y) => (
     <h1>{x + y}</h1>
   )} />
 }
 
 function ExampleRenderChildren() {
-  return <AnyComponent>
+  return <ShareComponent>
     {(x, y) => (<h1>{x + y}</h1>)}
-  </AnyComponent>;
+  </ShareComponent>;
 }
-
-
-
