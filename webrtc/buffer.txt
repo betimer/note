@@ -6,6 +6,5 @@
 
 
 
-
 setParameters:
 chrome yes, safari no (as of safari 12)

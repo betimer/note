@@ -22,7 +22,7 @@ for(var i in myObj) { console.log(i); } console.log(i); // same as below
 var i; for(i in myObj) { console.log(i); } console.log(i);
 // 3.3. how to hide local variables in ES5 ?
 (function() {
-  // Your code here
+// Your code here
   var var1; // local variable, protect from making global variables
   function f1() {
     if(var1) { }
