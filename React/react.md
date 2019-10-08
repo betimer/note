@@ -1,6 +1,6 @@
 # react
 
-## ---- Component Lifecycle (different with mount/update) ----
+## ---- Component life cycles (different with mount/update) ----
 
 http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
 
@@ -170,15 +170,17 @@ can I do something like redux props auto connected tag?????? <App redux-auto=tru
 
 https://github.com/chenglou/react-motion
 
-## PureComponent and Stateless Component
+## Stateless Component, PureComponent and Component
 
+// Stateless usually can just write simple function instead of class
 var Stateless1 = (props) => return <label>I am {this.props.name}</label>;
 class Stateless1 extends React.Component {
     render () { return <label>I am {this.props.name}</label>; }
 }
 
 Stateless Component will still re-render every time its parent re-renders, same as normal Component.
-PureComponent will not re-render if its props not gets changed (if state changes inside it, not check yet, but should be a separate topic, as we talking about parent re-render)
+
+PureComponent will not re-render if its props not gets changed (if state changes inside it, not check yet, but should be a separate topic, as we talking about parent re-render, and state change should re-render). So for this case, PureComponent improve better performance than functional Stateless Component
 
 ## React Best Practice and Hints
 

@@ -55,7 +55,7 @@ class Grandchild extends React.Component {
 
 
 // --------------------------------------------------------------------------------
-// -------------- emaple of setState in componetWillReceiveProps
+// -------------- exmaple of setState in componetWillReceiveProps
 function componetWillReceiveProps(nextProps) {
   // because of component mounted, state after constructor (init) will out sync, so do this:
   if (nextProps.isOpen != this.state.isOpen)
@@ -123,7 +123,7 @@ class Provider extends React.Component {
 
 // --------------------------------------------------------------------------------
 // -------- render props; render children (very similar approach)
-// ShareComponent maintains location of mouse, and a few components relay its value to render
+// Case: ShareComponent maintains location of mouse, and a few components relay its value to render
 class ShareComponent extends React.Component {
   state = { xx: 1, yy: 2 }
   // control state by itself
