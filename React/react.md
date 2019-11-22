@@ -219,4 +219,11 @@ PureComponent will not re-render if its props not gets changed (if state changes
 {list.map((item, index) => <div key={index}>{item.name}</div>)}
 ```
 
-4. 
+4. Styles
+A. inline style style={{fontSize: '18px'}}
+B. CSS with class name: className='class1'
+C. CSS modules: import aStyle from "./compA.style.css"; className={aStyle.button}
+   // https://css-tricks.com/css-modules-part-1-need/
+   // https://programmingwithmosh.com/react/css-modules-react/
+
+5. 
